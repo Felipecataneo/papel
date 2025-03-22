@@ -73,7 +73,7 @@ def traduzir_texto(texto, client):
     
     try:
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "Você é um especialista em óleo e gás. Traduza o seguinte texto do inglês para o português, mantendo todos os termos técnicos precisos. Remova quaisquer ruídos ou artefatos da extração que não fazem parte do conteúdo principal do documento. Formate o texto em markdown adequadamente, identificando títulos, subtítulos, listas e parágrafos."},
                 {"role": "user", "content": texto}
