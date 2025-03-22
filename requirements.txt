@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+openai
+langchain
+langchain-openai
+faiss-cpu
+pdfminer.six
+python-dotenv
+langchain-community
