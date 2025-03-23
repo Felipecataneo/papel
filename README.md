@@ -33,34 +33,34 @@ Esta aplicação foi desenvolvida para facilitar a leitura e consulta de documen
 3. Inclua as seguintes dependências no seu arquivo `requirements.txt`:
    ```
    aiohttp==3.11.14
-altair==5.5.0
-faiss-cpu==1.10.0
-GitPython==3.1.44
-httpx==0.28.1
-httpx-sse==0.4.0
-langchain==0.3.21
-langchain-community==0.3.20
-langchain-core==0.3.47
-langchain-openai==0.3.9
-langchain-text-splitters==0.3.7
-langgraph==0.3.18
-langgraph-checkpoint==2.0.21
-langgraph-prebuilt==0.1.4
-langgraph-sdk==0.1.58
-langsmith==0.3.18
-narwhals==1.31.0
-numpy==2.2.4
-openai==1.68.2
-pandas==2.2.3
-pdfminer.six==20240706
-pillow==11.1.0
-pydantic==2.10.6
-pydantic-settings==2.8.1
-python-dotenv==1.0.1
-regex==2024.11.6
-requests==2.32.3
-streamlit==1.43.2
-tiktoken==0.9.0
+   altair==5.5.0
+   faiss-cpu==1.10.0
+   GitPython==3.1.44
+   httpx==0.28.1
+   httpx-sse==0.4.0
+   langchain==0.3.21
+   langchain-community==0.3.20
+   langchain-core==0.3.47
+   langchain-openai==0.3.9
+   langchain-text-splitters==0.3.7
+   langgraph==0.3.18
+   langgraph-checkpoint==2.0.21
+   langgraph-prebuilt==0.1.4
+   langgraph-sdk==0.1.58
+   langsmith==0.3.18
+   narwhals==1.31.0
+   numpy==2.2.4
+   openai==1.68.2
+   pandas==2.2.3
+   pdfminer.six==20240706
+   pillow==11.1.0
+   pydantic==2.10.6
+   pydantic-settings==2.8.1
+   python-dotenv==1.0.1
+   regex==2024.11.6
+   requests==2.32.3
+   streamlit==1.43.2
+   tiktoken==0.9.0
    ```
 
 ## Uso
