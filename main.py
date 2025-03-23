@@ -358,7 +358,7 @@ def gerar_resposta_langgraph(pergunta, app, thread_id):
     
     return resposta
 
-# Interface principal (o restante do código permanece igual ao original)
+# Interface principal
 def main():
     st.title("Especialista em Óleo e Gás - Análise de Papers")
     
@@ -437,16 +437,18 @@ def main():
             st.info("Processando documento... Por favor, aguarde.")
             st.spinner()
         elif st.session_state.texto_final:
-            # Adicionar botão para copiar o texto
+            # Adicionar botão para baixar o texto como arquivo .md
             col1, col2 = st.columns([1, 6])
             with col1:
-                if st.button("📋 Copiar texto", key="copy_button"):
-                    st.session_state["texto_copiado"] = True
-                    # Usamos clipboard para mostrar ao usuário que tentamos copiar
-                    st.success("Texto copiado! Use Ctrl+V para colar.")
+                st.download_button(
+                    label="📥 Baixar texto em markdown",
+                    data=st.session_state.texto_final,
+                    file_name="documento_processado.md",
+                    mime="text/markdown"
+                )
             
-            # Adicionar campo de texto escondido para possibilitar a cópia manual
-            with st.expander("Se o botão de cópia não funcionar, selecione e copie o texto abaixo:", expanded=st.session_state.get("texto_copiado", False)):
+            # Adicionar campo de texto como fallback
+            with st.expander("Se precisar copiar manualmente, use o texto abaixo:", expanded=False):
                 st.code(st.session_state.texto_final, language="markdown")
             
             # Exibir o documento processado
@@ -505,7 +507,6 @@ def main():
                 st.session_state.documento_processado = False
                 st.session_state.texto_final = ""
                 st.session_state.vectorstore = None
-                st.session_state.texto_copiado = False  # Resetar estado de cópia
                 
                 # Forçar a atualização da interface para mostrar o estado de processamento
                 st.rerun()
