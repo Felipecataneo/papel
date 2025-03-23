@@ -79,6 +79,25 @@ def formatar_markdown(texto):
     
     return '\n'.join(texto_formatado)
 
+# Nova função para formatar texto em português usando IA
+def formatar_texto_portugues(texto, client):
+    if not texto:
+        return ""
+    
+    try:
+        response = client.chat.completions.create(
+            model=CHAT_MODEL,
+            messages=[
+                {"role": "system", "content": "Você é um especialista em óleo e gás. Formate o seguinte texto em português em markdown adequado, identificando títulos, subtítulos, listas e parágrafos. Remova quaisquer ruídos ou artefatos da extração que não fazem parte do conteúdo principal do documento. NÃO traduza o texto, apenas melhore sua formatação."},
+                {"role": "user", "content": texto}
+            ],
+            temperature=0.1
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        st.error(f"Erro ao formatar texto: {e}")
+        return formatar_markdown(texto)  # Fallback para a formatação básica
+
 # Função para traduzir texto de inglês para português
 def traduzir_texto(texto, client):
     if not texto:
@@ -118,13 +137,14 @@ def processar_documento(arquivo, idioma, client):
     # Extrair texto do PDF
     texto = extrair_texto_pdf(temp_path)
     
-    # Traduzir texto se estiver em inglês e o usuário quiser traduzi-lo
+    # Processar texto de acordo com o idioma
     if idioma == "Inglês":
         with st.spinner("Traduzindo documento..."):
             texto_final = traduzir_texto(texto, client)
     else:
-        # Formatar o texto em português
-        texto_final = formatar_markdown(texto)
+        # Formatar o texto em português usando IA
+        with st.spinner("Formatando documento..."):
+            texto_final = formatar_texto_portugues(texto, client)
     
     # Dividir texto em chunks com melhor preservação semântica
     text_splitter = RecursiveCharacterTextSplitter(
